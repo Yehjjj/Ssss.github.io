@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Anon</title>
+    <link rel="stylesheet" href="stylep.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,200&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </head>
+<!-- Update the existing script on your crypto.html page -->
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    // Get the total price parameter from the URL
+    var urlParams = new URLSearchParams(window.location.search);
+    var totalPriceParam = urlParams.get("totalPrice");
+
+    // Display the total price on the crypto page
+    var cryptoTotalPriceElement = document.getElementById("cryptoTotalPrice");
+    if (cryptoTotalPriceElement && totalPriceParam) {
+      cryptoTotalPriceElement.textContent += totalPriceParam;
+
+      // Update the Bitcoin link with the total price
+      var bitcoinLink = document.getElementById("bitcoinLink");
+      if (bitcoinLink) {
+        bitcoinLink.href += totalPriceParam;
+      }
+      // Update links for other cryptocurrencies similarly
+    }
+  });
+</script>
+  <body>
+    <div class="header">
+      <div class="container">
+        <div class="navbar">
+          <div class="logo">
+            <a href="index.html">
+            <img src="assets/images/logo/Logo.svg" alt="Anon's" width="125px"
+            /></a>
+          </div>
+          <nav>
+          <ul id="MenuItems">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="hot.html">Hot offers</a></li>
+            <li><a href="best.html">Best sellers</a></li>
+            <li><a href="about.html.html">About us</a></li>
+              <!-- TODo: 22:20 -->
+            </ul>
+          </nav>
+
+          <img
+            src="images/menu.png"
+            alt=""
+            class="menu-icon"
+            onclick="menutoggle()"
+          />
+        </div>
+                </div>
+    
+    <!-- Navigation ends here -->
+    <!-- Account Page -->
+
+    <div class="account-page">
+      <div class="container">
+        <div class="row">
+          <div class="col-2">
+
+          </div>
+          <div class="col-2">
+            <div class="form-container" style="margin-left: 6%;">
+              <div class="form-btn">
+
+                <span onclick="register()">DELIVERY INFO</span>
+<h2 style="color:green;" id="cryptoTotalPrice"> </h2>
+      
+
+              </div>
+
+<div id="error-message" style="color: red; display: none;">Please fill in all the fields</div>
+<div id="success-message" style="color: green; display: none;">Your order has been placed successfully!</div>
+
+<form id="RegForm">
+                &nbsp;
+    <input type="text" id="fullname" placeholder="Full name" />
+    <input type="email" id="email" placeholder="Email" />
+    <input type="text" id="address" placeholder="Address" />
+    <input type="text" id="zipcode" placeholder="Zip code" />
+    <input type="text" id="country" placeholder="Country" />
+    <input type="text" id="bitcoin" placeholder="Your bitcoin address" />
+       <h4 style="color: grey;">Send payment to the bitcoin adress below</h4>
+            
+         <h6>bc1qfy5wyqp7t2f7764k9wfehk4re8r4rhguy6q9f2</h6>
+                     &nbsp;
+
+    <button type="button" class="btn" style="margin: 0 auto; display: block;" onclick="placeOrder()">Place order</button>
+</form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <div class="container">
+        <div class="row">
+  
+          </div>
+          <div class="footer-col-2">
+            <img src="assets/images/logo/Logo.svg" alt="" />
+            <p>
+We want to take a moment to express our heartfelt gratitude for your unwavering support over the years. Your loyalty has been the cornerstone of our success, and we are truly thankful for each and every one of you.As we embark on a new chapter, we want to extend our sincerest thanks for being a part of our journey. Your trust and patronage have meant the world to us
+            </p>
+          </div>
+          <div class="footer-col-3">
+            <h3>Go to</h3>
+            <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="hot.html">Hot offers</a></li>
+            <li><a href="best.html">Best sellers</a></li>
+            <li><a href="about">About us</a></li>
+            </ul>
+          </div>
+
+
+        </div>
+        <hr />
+        <p class="copyright">Copyright 2019-2024, Anon, Inc </p>
+      </div>
+    </div>
+    <!-- JS for Toggle menu -->
+    <script>
+      var MenuItems = document.getElementById("MenuItems");
+
+      MenuItems.style.maxHeight = "0px";
+
+      function menutoggle() {
+        if (MenuItems.style.maxHeight == "0px") {
+          MenuItems.style.maxHeight = "200px";
+        } else {
+          MenuItems.style.maxHeight = "0px";
+        }
+      }
+    </script>
+<script>
+    function placeOrder() {
+        var fullname = document.getElementById("fullname").value;
+        var email = document.getElementById("email").value;
+        var address = document.getElementById("address").value;
+        var zipcode = document.getElementById("zipcode").value;
+        var country = document.getElementById("country").value;
+        var bitcoin = document.getElementById("bitcoin").value;
+        var errorMessage = document.getElementById("error-message");
+        var successMessage = document.getElementById("success-message");
+
+        if (fullname === "" || email === "" || address === "" || zipcode === "" || country === "" || bitcoin === "") {
+            errorMessage.style.display = "block";
+            successMessage.style.display = "none";
+        }
+        else {
+            errorMessage.style.display = "none";
+            successMessage.style.display = "block";
+            // Here you can add code to send the form data to your server asynchronously
+            // For example: using fetch() or XMLHttpRequest to send data to a server-side script
+            // Example: fetch('submit_order.php', {
+            //              method: 'POST',
+            //              body: new FormData(document.getElementById('RegForm'))
+            //          })
+            //          .then(response => {
+            //              // Handle the response from the server
+            //          })
+            //          .catch(error => {
+            //              console.error('Error:', error);
+            //          });
+        }
+    }
+</script>
+    <!-- 
+js for toggle form -->
+    <script>
+      var LoginForm = document.getElementById("LoginForm");
+      var RegForm = document.getElementById("RegForm");
+      var indicator = document.getElementById("indicator");
+
+      function register() {
+        RegForm.style.transform = "translateX(0px)";
+        LoginForm.style.transform = "translateX(0px)";
+        indicator.style.transform = "translateX(100px)";
+      }
+
+      function login() {
+        RegForm.style.transform = "translateX(300px)";
+        LoginForm.style.transform = "translateX(300px)";
+        indicator.style.transform = "translateX(0px)";
+      }
+    </script>
+  </body>
+</html>
